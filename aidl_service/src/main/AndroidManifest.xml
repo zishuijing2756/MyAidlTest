@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <!--服务端提供给客户端进程进行IPC通信的服务-->
+        <service android:name=".service.AidlService"
+                 android:exported="false">
+        </service>
+
     </application>
 
 </manifest>
