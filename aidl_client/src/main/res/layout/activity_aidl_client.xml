@@ -7,13 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".AidlClientActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/bind_service_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/bind_service"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <TextView
+        android:id="@+id/get_data_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取服务端数据"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintHorizontal_bias="0.5"
+         app:layout_goneMarginTop="10dp"
+        />
+
 
 </android.support.constraint.ConstraintLayout>

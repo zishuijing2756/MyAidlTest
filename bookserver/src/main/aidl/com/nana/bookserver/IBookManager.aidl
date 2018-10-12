@@ -1,9 +1,10 @@
-// IServerAidlInterface.aidl
-package com.nana.aidlservice;
+// IBookManager.aidl
+package com.nana.bookserver;
 
 // Declare any non-default types here with import statements
+import com.nana.bookserver.Book;
 
-interface IServerAidlInterface {
+interface IBookManager {
     /**
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
@@ -11,8 +12,6 @@ interface IServerAidlInterface {
     void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
             double aDouble, String aString);
 
-            /**
-            * return a number
-            */
-            int getInitNum();
+            List<Book> getBookList();
+            boolean addBook(in Book book);
 }
