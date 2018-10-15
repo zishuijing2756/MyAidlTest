@@ -14,6 +14,10 @@ public class Book implements Parcelable {
     private int id;
     private  String name;
 
+    public Book() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -30,7 +34,7 @@ public class Book implements Parcelable {
         this.name = name;
     }
 
-    protected Book(Parcel in) {
+    public Book(Parcel in) {
         id=in.readInt();
         name = in.readString();
     }

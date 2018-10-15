@@ -1,1 +1,30 @@
-include ':app', ':aidl_client', ':bookserver'
+
+Properties loadLocalSettingProperties() {
+    File local_setting = file("local.properties")
+    if (local_setting.exists()) {
+        Properties local = new Properties()
+        InputStreamReader locaoIS = new InputStreamReader(new FileInputStream(local_setting), "utf-8")
+        local.load(locaoIS)
+        return local
+    } else {
+        return null
+    }
+}
+
+def initializeEnvironment() {
+    Properties localSetting = loadLocalSettingProperties()
+    def IS_LOCAL = false
+    if (localSetting != null) {
+        IS_LOCAL = localSetting['LOCAL']
+    }
+    ext.module_dir = IS_LOCAL ? '.' : './build'
+}
+
+initializeEnvironment()
+
+def getModuleDir() {
+    return ext.module_dir
+}
+include ':app', ':bookserver', ':bookclient', ':appbase'
+//include(':backgroundLibrary')
+//project(':backgroundLibrary').projectDir=new File(getModuleDir()+'./BackgroundLibrary')

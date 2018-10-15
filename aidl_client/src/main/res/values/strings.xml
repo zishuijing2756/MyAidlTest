@@ -1,4 +1,0 @@
-<resources>
-    <string name="app_name">进程间通信</string>
-    <string name="bind_service">绑定服务</string>
-</resources>
