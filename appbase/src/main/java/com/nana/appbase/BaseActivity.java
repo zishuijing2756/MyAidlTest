@@ -24,7 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
 
-        BackgroundLibrary.inject(this);
+        BackgroundLibrary.inject(getApplicationContext());
 
         super.onCreate(savedInstanceState, persistentState);
         hideBottomUIMenu();

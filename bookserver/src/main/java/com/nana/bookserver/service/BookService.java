@@ -51,7 +51,7 @@ public class BookService extends Service {
         }
 
         @Override
-        public boolean addBook(Book book) throws RemoteException {
+        public boolean addBook(Book book)  {
             return bookList.add(book);
         }
     };

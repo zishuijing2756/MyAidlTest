@@ -28,5 +28,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:corners_radius="@dimen/mtc_base_30dp"/>
+        app:corners_radius="@dimen/mtc_base_30dp"
+        app:solid_color="#E3B666"
+        app:stroke_color="#8c6822"
+        app:stroke_width="2dp"/>
 </android.support.constraint.ConstraintLayout>

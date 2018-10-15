@@ -54,7 +54,7 @@ public class BookServiceManager {
     }
 
 
-    private boolean connectService() {
+    public boolean connectService() {
         if (mService == null) {
             Intent intent = new Intent();
             intent.setAction("com.nana.bookserver.service.BookService");
