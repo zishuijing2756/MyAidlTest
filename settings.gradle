@@ -25,6 +25,6 @@ initializeEnvironment()
 def getModuleDir() {
     return ext.module_dir
 }
-include ':app', ':bookserver', ':bookclient', ':appbase'
-//include(':backgroundLibrary')
-//project(':backgroundLibrary').projectDir=new File(getModuleDir()+'./BackgroundLibrary')
+include ':module_bookserver', ':module_bookclient', ':library_devkit', ':module_background', ':module_test'
+include(':BackgroundLibrary')
+project(':BackgroundLibrary').projectDir=new File('../BackgroundLibrary/library')

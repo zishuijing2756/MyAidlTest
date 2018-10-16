@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="mtc_color_9DA5B2">#9DA5B2</color>
+    <color name="mtc_color_636372">#636372</color>
+    <color name="mtc_color_f5a623">#f5a623</color>
+    <color name="mtc_color_d8dde4">#d8dde4</color>
+    <color name="mtc_color_95A7E5">#95A7E5</color>
+    <color name="mtc_color_99acd3">#99acd3</color>
+    <color name="mtc_color_d8d8d8">#D8D8D8</color>
+    <color name="mtc_color_bdbdbd">#BDBDBD</color>
+    <color name="mtc_color_e5e5e5">#e5e5e5</color>
+    <color name="mtc_color_EEF3FF">#EEF3FF</color>
+    <color name="mtc_color_F6F9FF">#F6F9FF</color>
+    <color name="mtc_color_000030">#000030</color>
+    <color name="mtc_color_E7EEFF">#E7EEFF</color>
+    <color name="mtc_color_0D3BD9">#0D3BD9</color>
+    <color name="mtc_color_808080">#808080</color>
+    <color name="mtc_color_4b609c">#4b609c</color>
+</resources>
