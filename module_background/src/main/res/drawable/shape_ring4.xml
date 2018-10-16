@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:innerRadiusRatio="3"
+       android:shape="ring"
+       android:thicknessRatio="9"
+       android:useLevel="false">
+    <!--扫描型渐变-->
+    <gradient
+        android:endColor="#0000ff"
+        android:startColor="#fff00000"
+        android:type="linear"/>
+    <stroke
+        android:width="5dp"
+        android:color="@color/mtc_color_f5a623"
+        android:dashWidth="@dimen/mtc_base_20dp"
+        android:dashGap="@dimen/mtc_base_20dp"/>
+
+
+</shape>

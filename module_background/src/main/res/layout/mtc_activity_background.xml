@@ -5,13 +5,36 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:padding="10dp"
               tools:ignore="MissingPrefix">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/mtc_base_10dp"
-        android:text="四个圆角"
+        android:gravity="center"
+        android:padding="@dimen/mtc_base_20dp"
+        android:text="shape=oval,当width==height时，就是圆形"
+        app:shape="oval"
+        app:solid_color="@color/mtc_color_f5a623"
+        app:stroke_color="@color/mtc_color_95A7E5"
+        app:stroke_width="1dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/mtc_base_20dp"
+        android:text="shape=rectangle（矩形），圆角10dp"
         app:corners_radius="10dp"
-        />
+        app:shape="rectangle"
+        app:solid_color="@color/mtc_color_f5a623"
+        app:stroke_color="@color/mtc_color_95A7E5"
+        app:stroke_width="1dp"/>
+
+
+    <!--<stroke-->
+    <!--android:width="@dimen/mtc_base_1dp"-->
+    <!--android:color="@color/colorAccent"-->
+    <!--android:dashWidth="@dimen/mtc_base_10dp"-->
+    <!--android:dashGap="@dimen/mtc_base_5dp"/>-->
 </LinearLayout>

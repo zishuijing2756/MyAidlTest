@@ -16,6 +16,7 @@ public class BackgroundActivity extends BaseActivity {
     @Override
     protected void create(Bundle savedInstanceState) {
         super.create(savedInstanceState);
+        setContentView(R.layout.mtc_activity_background);
 
     }
 }

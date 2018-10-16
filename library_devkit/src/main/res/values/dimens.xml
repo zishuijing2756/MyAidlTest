@@ -22,6 +22,37 @@
     <dimen name="mtc_base_19dp">19dp</dimen>
     <dimen name="mtc_base_20dp">20dp</dimen>
     <dimen name="mtc_base_30dp">30dp</dimen>
+    <dimen name="mtc_base_31dp">31dp</dimen>
+    <dimen name="mtc_base_32dp">32dp</dimen>
+    <dimen name="mtc_base_33dp">33dp</dimen>
+    <dimen name="mtc_base_34dp">34dp</dimen>
+    <dimen name="mtc_base_35dp">35dp</dimen>
+    <dimen name="mtc_base_36dp">36dp</dimen>
+    <dimen name="mtc_base_37dp">37dp</dimen>
+    <dimen name="mtc_base_38dp">38dp</dimen>
+    <dimen name="mtc_base_39dp">39dp</dimen>
+    <dimen name="mtc_base_40dp">40dp</dimen>
+    <dimen name="mtc_base_41dp">41dp</dimen>
+    <dimen name="mtc_base_42dp">42dp</dimen>
+    <dimen name="mtc_base_43dp">43dp</dimen>
+    <dimen name="mtc_base_44dp">44dp</dimen>
+    <dimen name="mtc_base_45dp">45dp</dimen>
+    <dimen name="mtc_base_46dp">46dp</dimen>
+    <dimen name="mtc_base_47dp">47dp</dimen>
+    <dimen name="mtc_base_48dp">48dp</dimen>
+    <dimen name="mtc_base_49dp">49dp</dimen>
+    <dimen name="mtc_base_50dp">50dp</dimen>
+    <dimen name="mtc_base_51dp">51dp</dimen>
+    <dimen name="mtc_base_52dp">52dp</dimen>
+    <dimen name="mtc_base_53dp">53dp</dimen>
+    <dimen name="mtc_base_54dp">54dp</dimen>
+    <dimen name="mtc_base_55dp">55dp</dimen>
+    <dimen name="mtc_base_56dp">56dp</dimen>
+    <dimen name="mtc_base_57dp">57dp</dimen>
+    <dimen name="mtc_base_58dp">58dp</dimen>
+    <dimen name="mtc_base_60dp">60dp</dimen>
+    <dimen name="mtc_base_61dp">61dp</dimen>
+    <dimen name="mtc_base_100dp">100dp</dimen>
 
     <!--文字大小-->
     <dimen name="font_size_title_1">1sp</dimen>
