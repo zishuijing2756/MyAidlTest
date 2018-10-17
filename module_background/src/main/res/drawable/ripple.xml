@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+       android:color="@color/mtc_color_f5a623"
+    android:radius="10dp"
+    >
+    <item
+        android:drawable="@color/mtc_color_4B609C"/>
+    <!--<item android:drawable="@color/colorAccent"/>-->
+</ripple>

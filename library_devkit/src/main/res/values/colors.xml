@@ -19,4 +19,22 @@
     <color name="mtc_color_0D3BD9">#0D3BD9</color>
     <color name="mtc_color_808080">#808080</color>
     <color name="mtc_color_4b609c">#4b609c</color>
+    <color name="mtc_color_4B609C">#4B609C</color>
+    <color name="mtc_color_A68958">#A68958</color>
+    <color name="mtc_color_6B84CB">#6B84CB</color>
+    <color name="mtc_color_E5E8F0">#E5E8F0</color>
+    <color name="mtc_color_99ACD3">#99ACD3</color>
+    <color name="mtc_color_B6C9EC">#B6C9EC</color>
+    <color name="mtc_color_6583E8">#6583E8</color>
+    <color name="mtc_color_404247">#404247</color>
+    <color name="mtc_color_5473DE">#5473DE</color>
+    <color name="mtc_color_D8DDE4">#D8DDE4</color>
+    <color name="mtc_color_71C671">#71C671</color>
+    <color name="mtc_color_919DAF">#919DAF</color>
+    <color name="mtc_color_7CFC00">#7CFC00</color>
+    <color name="mtc_color_8c6822">#8c6822</color>
+    <color name="mtc_color_CBDCFB">#CBDCFB</color>
+    <color name="mtc_color_E3B666">#E3B666</color>
+
+
 </resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/colorPrimaryDark"
+          android:state_accelerated="true"
+          android:state_activated="true"
+          android:state_active="true"
+          android:state_checkable="true"
+          android:state_checked="true"
+          android:state_drag_can_accept="true"
+          android:state_drag_hovered="true"
+          android:state_enabled="true"
+          android:state_first="true"
+          android:state_focused="true"
+          android:state_hovered="true"
+          android:state_last="true"
+          android:state_middle="true"
+          android:state_pressed="true"
+          android:state_selected="true"
+          android:state_single="true"
+          android:state_window_focused="true"/>
+
+    <!-- 默认时的背景图片-->
+    <item android:drawable="@drawable/shape_line"/>
+
+    <!-- 没有焦点时的背景图片 -->
+    <item android:drawable="@drawable/shape_line"
+          android:state_window_focused="false"/>
+
+    <!-- 非触摸模式下获得焦点并单击时的背景图片 -->
+    <item android:drawable="@drawable/shape_rectangle"
+          android:state_focused="true"
+          android:state_pressed="true"/>
+
+    <!-- 触摸模式下单击时的背景图片-->
+    <item android:drawable="@drawable/shape_ring1"
+          android:state_focused="false"
+          android:state_pressed="true"/>
+
+    <!--选中时的图片背景-->
+    <item android:drawable="@drawable/shape_ring2"
+          android:state_selected="true"/>
+
+    <!--获得焦点时的图片背景-->
+    <item android:drawable="@drawable/shape_ring3"
+          android:state_focused="true"/>
+
+    <!--布尔值。如果在按下对象（例如触摸/点按某按钮）时应使用此项目，则值为“true”；如果在默认的未按下状态时应使用此项目，则值为“false”。-->
+    <!--android:state_pressed="true"-->
+
+    <!--布尔值。如果在对象具有输入焦点（例如当用户选择文本输入时）时应使用此项目，则值为“true”；如果在默认的非焦点状态时应使用此项目，则值为“false”。-->
+    <!--android:state_focused="true"-->
+
+    <!--布尔值。如果当光标悬停在对象上时应使用此项目，则值为“true”；如果在默认的非悬停状态时应使用此项目，则值为“false”。通常，这个可绘制对象可能与用于“聚焦”状态的可绘制对象相同。-->
+    <!--此项为 API 级别 14 新引入的配置。-->
+    <!--android:state_hovered="true" -->
+
+    <!--布尔值。如果在使用定向控件浏览（例如使用方向键浏览列表）的情况下对象为当前用户选择时应使用此项目，则值为“true”；-->
+    <!--如果在未选择对象时应使用此项目，则值为“false”。-->
+    <!--当焦点 (android:state_focused) 不充分（例如，列表视图有焦点但使用方向键选择其中的项目）时，使用所选状态。-->
+    <!--android:state_selected="true"-->
+
+    <!--布尔值。如果当对象可选中时应使用此项目，则值为“true”；-->
+    <!-- 如果当对象不可选中时应使用此项目，则值为“false”。（仅当对象可在可选中与不可选中小部件之间转换时才有用。） -->
+    <!--android:state_checkable="true" -->
+
+    <!--布尔值。如果在对象已选中时应使用此项目，则值为“true”；如果在对象未选中时应使用此项目，则值为“false”。-->
+    <!--android:state_checked="true" -->
+
+    <!--布尔值。如果在对象启用（能够接收触摸/点击事件）时应使用此项目，则值为“true”；如果在对象停用时应使用此项目，则值为“false”。-->
+    <!--android:state_enabled="true" -->
+
+    <!--布尔值。如果在对象激活作为持续选择（例如，在持续导航视图中“突出显示”之前选中的列表项）时应使用此项目，则值为“true”；如果在对象未激活时应使用此项目，则值为“false”。-->
+    <!--此项为 API 级别 11 新引入的配置。-->
+    <!--android:state_activated="true"-->
+
+    <!--布尔值。如果当应用窗口有焦点（应用在前台）时应使用此项目，则值为“true”；-->
+    <!--如果当应用窗口没有焦点（例如，通知栏下拉或对话框出现）时应使用此项目，则值为“false”。-->
+    <!--android:state_window_focused="true"-->
+
+
+    <!--android:state_active="true"-->
+    <!--android:state_drag_can_accept="true"-->
+    <!--android:state_drag_hovered="true"-->
+    <!--android:state_first="true"-->
+    <!--android:state_last="true"-->
+    <!--android:state_middle="true"-->
+    <!--android:state_single="true"-->
+
+
+    <!--注意:如果有多个item，那么程序将自动从上到下进行匹配，最先匹配的将得到应用-->
+
+
+</selector>

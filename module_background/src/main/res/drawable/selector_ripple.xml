@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <!--app:corners_radius="20dp"-->
+    <!--app:pressed_drawable="#71C671"-->
+    <!--app:ripple_color="#71C671"-->
+    <!--app:ripple_enable="true"-->
+    <!--app:stroke_color="#8c6822"-->
+    <!--app:stroke_width="2dp"-->
+    <!--app:unPressed_drawable="#7CFC00"-->
+
+    <!--<item android:state_pressed="true" android:drawable="#71C671" />-->
+    <!--<item android:state_pressed="false" android:drawable="#7CFC00"/>-->
+
+</selector>
