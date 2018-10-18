@@ -14,28 +14,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".BookClientActivity"
-        tools:ignore="MissingPrefix">
+        tools:context=".BookClientActivity">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:corners_radius="@dimen/mtc_base_30dp"
-            app:solid_color="#E3B666"
-            app:stroke_color="#8c6822"
-            app:stroke_width="2dp"/>
+            android:text="Hello World!"/>
 
         <Button
             android:id="@+id/mtc_book_client_bind_service_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/mtc_base_10dp"
-            android:text="@string/bind_service"
-            app:corners_radius="@dimen/mtc_base_30dp"
-            app:solid_color="#E3B666"
-            app:stroke_color="#8c6822"
-            app:stroke_width="2dp"/>
+            android:text="@string/bind_service"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

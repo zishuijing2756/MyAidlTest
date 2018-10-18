@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.noober.background.BackgroundLibrary;
-
 /**
  * Description:Activity 基类
  *
@@ -23,7 +21,6 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
         hideBottomUIMenu();
         injectMembers();
