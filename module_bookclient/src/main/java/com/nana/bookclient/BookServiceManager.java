@@ -104,6 +104,5 @@ public class BookServiceManager {
         return mBookManager;
     }
 
-
 }
 
