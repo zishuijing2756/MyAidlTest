@@ -1,5 +1,5 @@
 // IBookManager.aidl
-package com.nana.bookserver;
+package com.nana.bookserver.aidl;
 
 // Declare any non-default types here with import statements
 import com.nana.bookserver.aidl.Book;

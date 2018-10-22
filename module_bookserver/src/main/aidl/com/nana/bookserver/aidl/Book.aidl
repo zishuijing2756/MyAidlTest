@@ -1,3 +1,3 @@
-package com.nana.bookserver;
+package com.nana.bookserver.aidl;
 
 parcelable Book;

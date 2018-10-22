@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.nana.bookserver.aidl.Book;
-import com.nana.bookserver.IBookManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,6 @@ public class BookService extends Service {
         Book book = new Book(12345, "Book 1");
         bookList.add(book);
     }
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

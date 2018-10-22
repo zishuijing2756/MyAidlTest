@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.nana.bookserver.IBookManager;
+import com.nana.bookserver.aidl.IBookManager;
 
 /**
  * Description:
