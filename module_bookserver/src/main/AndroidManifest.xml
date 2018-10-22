@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".aidl.BookService"
+        <service android:name=".aidl.BookManagerService"
             android:process=":remote"/>
 
         <service android:name=".aidl.MessengerService"

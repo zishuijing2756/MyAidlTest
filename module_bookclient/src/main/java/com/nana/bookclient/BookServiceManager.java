@@ -79,7 +79,7 @@ public class BookServiceManager {
     private boolean bindService() {
         if (mBookManager == null) {
             Intent intent = new Intent();
-            intent.setAction("com.nana.bookserver.aidl.BookService");
+            intent.setAction("com.nana.bookserver.aidl.BookManagerService");
             intent.setPackage("com.nana.bookserver");
             boolean mIsBound = mContext.bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
             if (!mIsBound) {

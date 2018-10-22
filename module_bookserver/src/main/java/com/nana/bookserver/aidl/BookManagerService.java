@@ -2,46 +2,49 @@ package com.nana.bookserver.aidl;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Description:
+ * Description:服务端BookService
  *
  * @author yangnana
  * @version 1.3.2
  * @since 1.3.2
  */
-public class BookService extends Service {
+public class BookManagerService extends Service {
 
-    private static ArrayList<Book> bookList = new ArrayList<Book>();
+    private static final String TAG = "BMS";
+
+    private static CopyOnWriteArrayList<Book> mBookList = new CopyOnWriteArrayList<Book>();
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Book book = new Book(12345, "Book 1");
-        bookList.add(book);
+        mBookList.add(new Book(1, "Book 1"));
+        mBookList.add(new Book(2, "Book 2"));
     }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return stub;
+        return mBinder;
     }
 
-    private IBookManager.Stub stub = new IBookManager.Stub() {
+    private Binder mBinder = new IBookManager.Stub() {
 
         @Override
         public List<Book> getBookList() {
-            return bookList;
+            return mBookList;
         }
 
         @Override
         public boolean addBook(Book book) {
-            return bookList.add(book);
+            return mBookList.add(book);
         }
     };
 
