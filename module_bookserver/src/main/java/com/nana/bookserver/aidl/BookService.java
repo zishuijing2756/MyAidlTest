@@ -1,12 +1,11 @@
-package com.nana.bookserver.service;
+package com.nana.bookserver.aidl;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
-import com.nana.bookserver.Book;
+import com.nana.bookserver.aidl.Book;
 import com.nana.bookserver.IBookManager;
 
 import java.util.ArrayList;
@@ -21,29 +20,22 @@ import java.util.List;
  */
 public class BookService extends Service {
 
-    private ArrayList<Book> bookList = new ArrayList<Book>();
+    private static ArrayList<Book> bookList = new ArrayList<Book>();
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Book book = new Book();
-        book.setId(12345);
-        book.setName("Book 1");
+        Book book = new Book(12345, "Book 1");
         bookList.add(book);
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return stub;
     }
 
     private IBookManager.Stub stub = new IBookManager.Stub() {
-
-        @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
-        }
 
         @Override
         public List<Book> getBookList() {
@@ -51,7 +43,7 @@ public class BookService extends Service {
         }
 
         @Override
-        public boolean addBook(Book book)  {
+        public boolean addBook(Book book) {
             return bookList.add(book);
         }
     };

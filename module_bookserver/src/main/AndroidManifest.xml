@@ -13,12 +13,15 @@
             android:process=":remote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".service.BookService"
+        <service android:name=".aidl.BookService"
             android:process=":remote"/>
+
+        <service android:name=".aidl.MessengerService"
+                 android:process=":remote"/>
+
     </application>
 
 </manifest>

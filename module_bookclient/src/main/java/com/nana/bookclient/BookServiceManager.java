@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.RemoteException;
+import android.util.Log;
 
 import com.nana.bookserver.IBookManager;
 
@@ -18,21 +20,10 @@ import com.nana.bookserver.IBookManager;
  */
 public class BookServiceManager {
 
+    private static final String TAG = "BookServiceManager";
     private Context mContext;
-    private IBookManager mService;
+    private IBookManager mBookManager;
     private static BookServiceManager mInstance;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            mService = IBookManager.Stub.asInterface(service);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            mService = null;
-        }
-    };
 
     private BookServiceManager(Context mContext) {
         this.mContext = mContext;
@@ -46,23 +37,73 @@ public class BookServiceManager {
         return mInstance;
     }
 
-    public IBookManager getBookService() {
-        while (mService == null) {
-            connectService();
+
+    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            if (mBookManager == null) {
+                return;
+            }
+            mBookManager.asBinder().unlinkToDeath(mDeathRecipient, 0);
+            mBookManager = null;
+            //TODO 重新绑定远程服务
+            bindService();
         }
-        return mService;
-    }
+    };
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            try {
+                mBookManager = IBookManager.Stub.asInterface(service);
+                service.linkToDeath(mDeathRecipient, 0);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mBookManager = null;
+        }
+    };
 
 
-    public boolean connectService() {
-        if (mService == null) {
+
+
+    /**
+     * 绑定服务
+     *
+     * @return
+     */
+    private boolean bindService() {
+        if (mBookManager == null) {
             Intent intent = new Intent();
-            intent.setAction("com.nana.bookserver.service.BookService");
+            intent.setAction("com.nana.bookserver.aidl.BookService");
             intent.setPackage("com.nana.bookserver");
-            mContext.bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+            boolean mIsBound = mContext.bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+            if (!mIsBound) {
+                Log.d(TAG, ":remote进程尚未启动，IPC服务绑定失败！");
+                try {
+                    // 依据bindService的文档介绍，绑定失败时依旧需要及时释放连接
+                    mContext.unbindService(serviceConnection);
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage(), e);
+                }
+            } else {
+                Log.d(TAG, ":remote进程IPC服务绑定成功！");
+            }
         }
         return true;
     }
+
+    public IBookManager getBookService() {
+        while (mBookManager == null) {
+            bindService();
+        }
+        return mBookManager;
+    }
+
 
 }
 
