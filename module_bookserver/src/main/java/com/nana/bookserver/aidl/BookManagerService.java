@@ -2,8 +2,10 @@ package com.nana.bookserver.aidl;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Parcel;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
@@ -48,6 +50,10 @@ public class BookManagerService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        int check = checkCallingOrSelfPermission("com.nana.bookserver.permission.ACCESS_BOOK_SERVER");
+        if (check == PackageManager.PERMISSION_DENIED) {
+            return null;
+        }
         return mBinder;
     }
 
@@ -70,14 +76,40 @@ public class BookManagerService extends Service {
         public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
 
             mListernerList.register(listener);
-            Log.i(TAG,"register listener , current size->:"+mListernerList.getRegisteredCallbackCount());
+            Log.i(TAG, "register listener , current size->:" + mListernerList.getRegisteredCallbackCount());
         }
 
         @Override
         public void unRegisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
             mListernerList.unregister(listener);
-            Log.i(TAG,"unregister listener , current size->:"+mListernerList.getRegisteredCallbackCount());
+            Log.i(TAG, "unregister listener , current size->:" + mListernerList.getRegisteredCallbackCount());
 
+        }
+
+        /**
+         * 服务端加入权限验证，只允许指定的包名的应用可以调用远程服务接口
+         * @param code
+         * @param data
+         * @param reply
+         * @param flags
+         * @return
+         * @throws RemoteException
+         */
+        @Override
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            int check = checkCallingOrSelfPermission("com.nana.bookserver.permission.ACCESS_BOOK_SERVER");
+            if (check == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+            String packageName = null;
+            String[] packages = getPackageManager().getPackagesForUid(getCallingUid());
+            if (packages != null && packages.length > 0) {
+                packageName = packages[0];
+            }
+            if (!packageName.startsWith("com.nana")) {
+                return false;
+            }
+            return super.onTransact(code, data, reply, flags);
         }
     };
 

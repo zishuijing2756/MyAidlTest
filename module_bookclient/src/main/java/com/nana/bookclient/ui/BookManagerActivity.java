@@ -1,4 +1,4 @@
-package com.nana.bookclient;
+package com.nana.bookclient.ui;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 
+import com.nana.bookclient.R;
 import com.nana.bookserver.aidl.Book;
 import com.nana.bookserver.aidl.BookManagerService;
 import com.nana.bookserver.aidl.IBookManager;
@@ -21,7 +22,11 @@ import com.nana.devkit.BaseActivity;
 import java.util.List;
 
 /**
- * AIDL -》客户端调用服务实例
+ * Description: PIC（进程间通信）：AIDL -》客户端调用服务实例
+ *
+ * @author yangnana
+ * @version 1
+ * @since 1
  */
 public class BookManagerActivity extends BaseActivity implements View.OnClickListener {
 
@@ -54,18 +59,29 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
                 mRemoteBookManager = bookManager;
 
-                List<Book> list = bookManager.getBookList();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            List<Book> list = mRemoteBookManager.getBookList();
 
-                Log.i(TAG, "*******query book list:" + list.toString());
-                Log.i(TAG, "*******query book list:" + list.toString());
+                            Log.i(TAG, "*******query book list:" + list.toString());
+                            Log.i(TAG, "*******query book list:" + list.toString());
 
-                Book newBook = new Book(3, "Android 开发艺术探索");
-                bookManager.addBook(newBook);
-                Log.i(TAG, "*******add Book:" + newBook.toString());
+                            Book newBook = new Book(3, "Android 开发艺术探索");
 
-                List<Book> newList = bookManager.getBookList();
-                Log.i(TAG, "*******query book newList:" + newList.toString());
+                            mRemoteBookManager.addBook(newBook);
 
+                            Log.i(TAG, "*******add Book:" + newBook.toString());
+
+                            List<Book> newList = mRemoteBookManager.getBookList();
+                            Log.i(TAG, "*******query book newList:" + newList.toString());
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).start();
 
                 bookManager.registerListener(mOnNewBookArrivedListener);
 
@@ -82,7 +98,13 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
         }
     };
 
+
     private IOnNewBookArrivedListener mOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
+        /**
+         * 运行在客户端的Binder的线程池中，故不能在里面执行UI操作，需要借助Handler切换到UI线程；
+         * @param newBook
+         * @throws RemoteException
+         */
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
 
@@ -94,7 +116,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void create(Bundle savedInstanceState) {
         super.create(savedInstanceState);
-        setContentView(R.layout.activity_book_client);
+        setContentView(R.layout.activity_bookmanager);
         initView();
     }
 

@@ -1,4 +1,4 @@
-package com.nana.bookclient;
+package com.nana.bookclient.ui;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -14,14 +14,15 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.nana.bookserver.aidl.MessengerService;
+import com.nana.bookclient.R;
+import com.nana.bookserver.messenger.MessengerService;
 
 /**
- * Description:Messenger实现进程间通信，客户端代码
+ * Description:PIC（进程间通信）：Messenger实例
  *
  * @author yangnana
- * @version 1.3.2
- * @since 1.3.2
+ * @version 1
+ * @since 1
  */
 public class MessengerActivity extends Activity {
     private static final String TAG = "MessengerActivity";

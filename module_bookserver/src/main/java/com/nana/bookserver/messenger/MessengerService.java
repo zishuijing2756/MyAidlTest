@@ -1,4 +1,4 @@
-package com.nana.bookserver.aidl;
+package com.nana.bookserver.messenger;
 
 import android.app.Service;
 import android.content.Intent;
