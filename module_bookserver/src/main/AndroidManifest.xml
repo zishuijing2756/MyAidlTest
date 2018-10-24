@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.nana.bookserver">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!--自定义权限-->
     <permission
         android:name="com.nana.bookserver.permission.ACCESS_BOOK_SERVER"
@@ -34,6 +36,11 @@
             android:authorities="com.nana.bookserver.provider.BookProvider"
             android:permission="com.nana.bookclient.PROVIDER"
             android:process=":provider"/>
+
+        <service
+            android:name=".socket.TCPServerService"
+            android:process=":remote"/>
+
 
     </application>
 
