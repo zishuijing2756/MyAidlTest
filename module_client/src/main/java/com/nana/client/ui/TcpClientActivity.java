@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.nana.client.R;
 import com.nana.server.socket.TCPServerService;
 import com.nana.devkit.BaseActivity;
-import com.nana.devkit.optimize.LaunchTaskPool;
+import com.nana.devkit.optimize.TaskPool;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -59,7 +59,7 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
         startService(intent);
 
 
-        LaunchTaskPool.postImmediately(new Runnable() {
+        TaskPool.runTask(new Runnable() {
             @Override
             public void run() {
                 connectTCPServer();
@@ -128,7 +128,7 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
                     sMessageET.setText("");
                     sMessageTV.append("self " + formatDateTime(System.currentTimeMillis()) + ":" + msg + "\n");
 
-                    LaunchTaskPool.postImmediately(new Runnable() {
+                    TaskPool.runTask(new Runnable() {
                         @Override
                         public void run() {
                             mPrintWrite.println(msg);

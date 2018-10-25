@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.3.2
  * @since 1.3.2
  */
-public class LaunchTaskPool {
+public class TaskPool {
 
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
     private static final int CORE_POOL_SIZE = CPU_COUNT + 1;
@@ -39,37 +39,37 @@ public class LaunchTaskPool {
             = new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE,
             TimeUnit.SECONDS, sPoolWorkQueue, sThreadFactory);
 
-    public LaunchTaskPool() {
+    public TaskPool() {
     }
 
-    private static void runTask(TaskPriority priority, Runnable runnable) {
-        switch (priority) {
-            case BLOCK:
-                runnable.run();
-                break;
-            case IMMEDIATELY:
-                THREAD_POOL_EXECUTOR.execute(runnable);
-                break;
-            case PRIORITY:
-                THREAD_POOL_EXECUTOR.execute(runnable);
-                break;
-            default:
-                break;
-        }
+    public static void runTask( Runnable runnable) {
+        THREAD_POOL_EXECUTOR.execute(runnable);
+        // switch (priority) {
+        //     case BLOCK:
+        //         runnable.run();
+        //         break;
+        //     case IMMEDIATELY:
+        //         THREAD_POOL_EXECUTOR.execute(runnable);
+        //         break;
+        //     case PRIORITY:
+        //         THREAD_POOL_EXECUTOR.execute(runnable);
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 
 
-
-    public void postBlock(Runnable runnable) {
-        runTask(TaskPriority.BLOCK, runnable);
-    }
-
-    public static void postImmediately(Runnable runnable) {
-        runTask(TaskPriority.IMMEDIATELY, runnable);
-    }
-
-    public static void postDelay(Runnable runnable) {
-        runTask(TaskPriority.PRIORITY, runnable);
-    }
+    // public void postBlock(Runnable runnable) {
+    //     runTask(TaskPriority.BLOCK, runnable);
+    // }
+    //
+    // public static void postImmediately(Runnable runnable) {
+    //     runTask(TaskPriority.IMMEDIATELY, runnable);
+    // }
+    //
+    // public static void postDelay(Runnable runnable) {
+    //     runTask(TaskPriority.PRIORITY, runnable);
+    // }
 
 }
