@@ -116,7 +116,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void create(Bundle savedInstanceState) {
         super.create(savedInstanceState);
-        setContentView(R.layout.activity_bookmanager);
+        setContentView(R.layout.module_client_activity_bookmanager);
         initView();
     }
 

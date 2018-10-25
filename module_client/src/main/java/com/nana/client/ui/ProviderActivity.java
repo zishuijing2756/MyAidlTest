@@ -26,7 +26,7 @@ public class ProviderActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_provider);
+        setContentView(R.layout.module_client_activity_provider);
 
 
 

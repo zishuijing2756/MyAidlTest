@@ -53,7 +53,7 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void create(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_tcp_client);
+        setContentView(R.layout.module_client_activity_tcp_client);
         initView();
         Intent intent = new Intent(this, TCPServerService.class);
         startService(intent);

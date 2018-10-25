@@ -35,7 +35,7 @@ public class MessengerActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messenger);
+        setContentView(R.layout.module_client_activity_messenger);
 
         bindService();
 
