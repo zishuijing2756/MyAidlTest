@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-//        applicationId "com.nana.bookserver"
+//        applicationId "com.nana.server"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -40,19 +40,19 @@ dependencies {
 
 
 //task clearJar(type: Delete) {
-//    delete 'libs/bookserverlib.jar'
+//    delete 'libs/serverlib.jar'
 //}
 //
 //task makeJar(type:org.gradle.api.tasks.bundling.Jar) {
 //
 ////指定生成的jar名
-//    baseName 'bookserverlib'
+//    baseName 'serverlib'
 //
 ////从哪里打包class文件
-//    from('build/intermediates/classes/debug/com/nana/bookserver')
+//    from('build/intermediates/classes/debug/com/nana/server')
 //
 ////打包到jar后的目录结构
-//    into('com/nana/bookserver')
+//    into('com/nana/server')
 //
 ////去掉不需要打包的目录和文件
 //    exclude('R.class')

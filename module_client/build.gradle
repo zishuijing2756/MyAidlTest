@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.nana.bookclient"
+        applicationId "com.nana.client"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1

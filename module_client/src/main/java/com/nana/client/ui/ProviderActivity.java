@@ -29,12 +29,8 @@ public class ProviderActivity extends BaseActivity {
         setContentView(R.layout.activity_provider);
 
 
-        // Uri uri = Uri.parse("content://com.nana.bookserver.provider.BookProvider");
-        // getContentResolver().query(uri, null, null, null, null);
-        // getContentResolver().query(uri, null, null, null, null);
-        // getContentResolver().query(uri, null, null, null, null);
 
-        Uri bookUri = Uri.parse("content://com.nana.bookserver.provider.BookProvider/book");
+        Uri bookUri = Uri.parse("content://com.nana.server.provider.BookProvider/book");
         ContentValues values = new ContentValues();
         values.put("_id", 6);
         values.put("name", "Android编程艺术");
@@ -50,7 +46,7 @@ public class ProviderActivity extends BaseActivity {
         }
         bookCursor.close();
 
-        Uri userUri = Uri.parse("content://com.nana.bookserver.provider.BookProvider/user");
+        Uri userUri = Uri.parse("content://com.nana.server.provider.BookProvider/user");
 
         Cursor userCursor = getContentResolver().query(userUri, new String[]{"_id", "name", "sex"}, null, null, null);
         while (userCursor.moveToNext()) {

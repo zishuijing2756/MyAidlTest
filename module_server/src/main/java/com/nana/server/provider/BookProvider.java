@@ -32,7 +32,7 @@ public class BookProvider extends ContentProvider {
     private Context mContext;
     private SQLiteDatabase mDb;
 
-    private static final String AUTHORITY = "com.nana.bookserver.provider.BookProvider";
+    private static final String AUTHORITY = "com.nana.server.provider.BookProvider";
 
     /**
      * 指定book的Uri

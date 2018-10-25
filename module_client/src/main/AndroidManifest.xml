@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.nana.bookserver.permission.ACCESS_BOOK_SERVER"/>
+    <uses-permission android:name="com.nana.server.permission.ACCESS_BOOK_SERVER"/>
 
     <application
         android:allowBackup="true"
@@ -12,9 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NormalTheme">
 
-        <activity android:name="com.nana.client.ui.BookManagerActivity">
+        <activity android:name=".ui.BookManagerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
@@ -24,15 +24,15 @@
         </activity>
 
         <activity
-            android:name="com.nana.client.ui.MessengerActivity"
+            android:name=".ui.MessengerActivity"
             android:exported="true"/>
 
         <activity
-            android:name="com.nana.client.ui.ProviderActivity"
+            android:name=".ui.ProviderActivity"
             android:exported="true"/>
 
         <activity
-            android:name="com.nana.client.ui.TcpClientActivity"
+            android:name=".ui.TcpClientActivity"
             android:exported="true"/>
 
 

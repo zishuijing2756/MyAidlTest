@@ -34,7 +34,7 @@
         <provider
             android:name="com.nana.server.provider.BookProvider"
             android:authorities="com.nana.server.provider.BookProvider"
-            android:permission="com.nana.bookclient.PROVIDER"
+            android:permission="com.nana.client.PROVIDER"
             android:process=":provider"/>
 
         <service
