@@ -1,1 +1,1 @@
-include ':module_bookserver', ':module_bookclient', ':library_devkit', ':module_test'
+include ':module_server', ':module_client', ':library_devkit', ':module_test'
