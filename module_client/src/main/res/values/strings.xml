@@ -3,4 +3,13 @@
 
     <string name="bind_service">绑定服务</string>
 
+    <string name="ipc_aidl">IPC:aidl</string>
+    <string name="ipc_messenger">IPC:messenger</string>
+    <string name="ipc_provider">IPC:provider</string>
+    <string name="ipc_socket">IPC:socket</string>
+
+    <string name="jump_to_aidl">jumpToAidl</string>
+    <string name="jump_to_messenger">jumpToMessenger</string>
+    <string name="jump_to_provider">jumpToProvider</string>
+    <string name="jump_to_socket">jumpToSocket</string>
 </resources>

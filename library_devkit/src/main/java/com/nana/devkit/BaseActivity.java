@@ -26,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
         //注：参数必须是当前上下文，如果参数为getApplicationContext(),就不会有效果
         BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
-        // hideBottomUIMenu();
+        hideBottomUIMenu();
         injectMembers();
         injectContentView();
 

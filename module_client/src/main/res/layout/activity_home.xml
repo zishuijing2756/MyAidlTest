@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:ignore="MissingPrefix">
+
+    <Button
+        android:id="@+id/moudle_home_btn_aidl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mtc_base_10dp"
+        android:onClick="jumpToAidl"
+        android:text="@string/ipc_aidl"
+        android:textColor="@android:color/white"
+        app:corners_radius="@dimen/mtc_base_10dp"
+        app:solid_color="@color/mtc_color_f5a623"/>
+
+    <Button
+        android:id="@+id/moudle_home_btn_messenger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mtc_base_10dp"
+        android:onClick="jumpToMessenger"
+        android:text="@string/ipc_messenger"
+        android:textColor="@android:color/white"
+        app:corners_radius="@dimen/mtc_base_10dp"
+        app:solid_color="@color/mtc_color_95A7E5"/>
+
+    <Button
+        android:id="@+id/moudle_home_btn_provider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mtc_base_10dp"
+        android:onClick="jumpToProvider"
+        android:text="@string/ipc_provider"
+        android:textColor="@android:color/white"
+        app:corners_radius="@dimen/mtc_base_10dp"
+        app:solid_color="@color/mtc_color_71C671"/>
+
+    <Button
+        android:id="@+id/moudle_home_btn_socket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mtc_base_10dp"
+        android:onClick="jumpToSocket"
+        android:text="@string/ipc_socket"
+        android:textColor="@android:color/white"
+        app:corners_radius="@dimen/mtc_base_10dp"
+        app:solid_color="@color/mtc_color_D9C80D"/>
+</LinearLayout>
