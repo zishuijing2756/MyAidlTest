@@ -22,8 +22,8 @@ import android.util.Log;
  * 7、
  *
  * @author yangnana
- * @version 1.3.2
- * @since 1.3.2
+ * @version 1
+ * @since 1
  */
 public class BookProvider extends ContentProvider {
 
@@ -81,9 +81,9 @@ public class BookProvider extends ContentProvider {
      * 初始化数据库
      */
     private void initProviderData() {
-        mDb = new DBOpenHelper(mContext).getWritableDatabase();
-        mDb.execSQL("delete from " + DBOpenHelper.BOOK_TABLE_NAME);
-        mDb.execSQL("delete from " + DBOpenHelper.USER_TABLE_NAME);
+        mDb = new DbOpenHelper(mContext).getWritableDatabase();
+        mDb.execSQL("delete from " + DbOpenHelper.BOOK_TABLE_NAME);
+        mDb.execSQL("delete from " + DbOpenHelper.USER_TABLE_NAME);
         mDb.execSQL("insert into book values(3,'Android')");
         mDb.execSQL("insert into book values(4,'IOS')");
         mDb.execSQL("insert into book values(5,'HTML')");
@@ -203,10 +203,10 @@ public class BookProvider extends ContentProvider {
         String tableName = null;
         switch (sUriMatcher.match(uri)) {
             case BOOK_URI_CODE:
-                tableName = DBOpenHelper.BOOK_TABLE_NAME;
+                tableName = DbOpenHelper.BOOK_TABLE_NAME;
                 break;
             case USER_URI_CODE:
-                tableName = DBOpenHelper.USER_TABLE_NAME;
+                tableName = DbOpenHelper.USER_TABLE_NAME;
                 break;
             default:
                 break;

@@ -7,8 +7,8 @@ import android.os.Parcelable;
  * Description:
  *
  * @author yangnana
- * @version 1.3.2
- * @since 1.3.2
+ * @version 1
+ * @since 1
  */
 public class User implements Parcelable {
     public int userId;

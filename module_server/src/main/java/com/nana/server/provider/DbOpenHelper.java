@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
  * @version 1
  * @since 1
  */
-public class DBOpenHelper extends SQLiteOpenHelper {
+public class DbOpenHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "book_provider.db";
     public static final String BOOK_TABLE_NAME = "book";
@@ -30,7 +30,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             + " sex INT) ";
 
 
-    public DBOpenHelper(@Nullable Context context) {
+    public DbOpenHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

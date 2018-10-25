@@ -10,7 +10,7 @@
         android:process="normal"/>
     <application>
         <activity
-            android:name="com.nana.server.BookActivity"
+            android:name="com.nana.server.MainActivity"
             android:process=":remote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
