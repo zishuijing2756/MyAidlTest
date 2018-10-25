@@ -6,6 +6,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.nana.devkit.optimize.LaunchTaskPool;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class TCPServerService extends Service {
 
     @Override
     public void onCreate() {
-        new Thread(new TcpServer()).start();
+        LaunchTaskPool.postImmediately(new TcpServer());
         super.onCreate();
     }
 
@@ -70,7 +72,8 @@ public class TCPServerService extends Service {
                 try {
                     final Socket client = serverSocket.accept();
                     Log.i(TAG, "accept");
-                    new Thread() {
+
+                    LaunchTaskPool.postImmediately(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -79,7 +82,8 @@ public class TCPServerService extends Service {
                                 Log.e(TAG, e.getMessage());
                             }
                         }
-                    }.start();
+                    });
+
                 } catch (IOException e) {
                     Log.e(TAG, e.getMessage());
                 }
@@ -94,7 +98,7 @@ public class TCPServerService extends Service {
         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
         /*用于向客户端发送消息*/
-        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())),true);
 
         out.println("👏来到聊天室");
 
@@ -116,8 +120,9 @@ public class TCPServerService extends Service {
         Log.i(TAG, "client quit.");
 
         /*关闭流*/
-        in.close();
+        out.flush();
         out.close();
+        in.close();
         client.close();
 
     }

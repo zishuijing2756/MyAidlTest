@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg1"
+              android:orientation="vertical"
+              tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/mtc_tcp_client_msg_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         />
 
     <LinearLayout
@@ -26,6 +32,10 @@
             android:id="@+id/mtc_tcp_client_send_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_weight="2"
+            android:text="发送"
+            android:textColor="@android:color/white"
+            app:corners_topLeftRadius="@dimen/mtc_base_10dp"
+            app:solid_color="@color/mtc_color_f5a623"/>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

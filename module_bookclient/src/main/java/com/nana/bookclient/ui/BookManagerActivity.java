@@ -59,7 +59,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
                 mRemoteBookManager = bookManager;
 
-                new Thread(new Runnable() {
+                new Thread() {
                     @Override
                     public void run() {
                         try {
@@ -81,7 +81,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
                         }
 
                     }
-                }).start();
+                }.start();
 
                 bookManager.registerListener(mOnNewBookArrivedListener);
 

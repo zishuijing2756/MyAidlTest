@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.noober.background.BackgroundLibrary;
+
 /**
  * Description:Activity 基类
  *
@@ -21,10 +23,13 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        //注：参数必须是当前上下文，如果参数为getApplicationContext(),就不会有效果
+        BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
         hideBottomUIMenu();
         injectMembers();
         injectContentView();
+
         create(savedInstanceState);
     }
 

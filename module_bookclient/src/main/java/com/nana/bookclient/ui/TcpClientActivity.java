@@ -10,13 +10,13 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nana.bookclient.R;
 import com.nana.bookserver.socket.TCPServerService;
 import com.nana.devkit.BaseActivity;
+import com.nana.devkit.optimize.LaunchTaskPool;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -44,68 +44,44 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
     private PrintWriter mPrintWrite;
     private Socket mClientSocket;
 
-    private TextView mMessageTV;
-    private EditText mMessageET;
-    private Button mSendBtn;
+    private static TextView sMessageTV;
+    private static EditText sMessageET;
+    private static TextView sSendBtn;
 
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case MESSAGE_RECEIVE_NEW_MSG:
-                    mMessageTV.append(msg.obj.toString());
-                    break;
-                case MESSAGE_SOCKET_CONNECTED:
-                    mSendBtn.setEnabled(true);
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
+    private Handler mHandler = new MyHandler();
+
 
     @Override
     protected void create(Bundle savedInstanceState) {
-        super.create(savedInstanceState);
-
-
-    }
-
-    @Override
-    protected void injectContentView() {
         setContentView(R.layout.activity_tcp_client);
-    }
-
-    @Override
-    protected void injectViews() {
-        mMessageTV = findViewById(R.id.mtc_tcp_client_msg_tv);
-        mMessageET = findViewById(R.id.mtc_tcp_client_send_msg_et);
-        mSendBtn = findViewById(R.id.mtc_tcp_client_send_btn);
-        mSendBtn.setOnClickListener(this);
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        initView();
         Intent intent = new Intent(this, TCPServerService.class);
         startService(intent);
-        new Thread() {
+
+
+        LaunchTaskPool.postImmediately(new Runnable() {
             @Override
             public void run() {
                 connectTCPServer();
             }
-        }.start();
+        });
     }
+
+
+    private void initView() {
+        sMessageTV = findViewById(R.id.mtc_tcp_client_msg_tv);
+        sMessageET = findViewById(R.id.mtc_tcp_client_send_msg_et);
+        sSendBtn = findViewById(R.id.mtc_tcp_client_send_btn);
+        sSendBtn.setOnClickListener(this);
+    }
+
 
     private void connectTCPServer() {
 
-        Socket socket = null;
-        while (socket == null) {
+        while (mClientSocket == null) {
             try {
-                socket = new Socket("localhost", 8688);
-                mClientSocket = socket;
-                mPrintWrite = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                mClientSocket = new Socket("localhost", 8688);
+                mPrintWrite = new PrintWriter(new BufferedWriter(new OutputStreamWriter(mClientSocket.getOutputStream())), true);
                 mHandler.sendEmptyMessage(MESSAGE_SOCKET_CONNECTED);
                 Log.i(TAG, "connect server success");
             } catch (IOException e) {
@@ -116,20 +92,27 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
         }
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            /*读取服务端发送来的消息*/
+            BufferedReader br = new BufferedReader(new InputStreamReader(mClientSocket.getInputStream()));
+
             while (!TcpClientActivity.this.isFinishing()) {
                 String msg = br.readLine();
                 Log.i(TAG, "receive: " + msg);
-                if (msg != null) {
-                    mHandler.obtainMessage(MESSAGE_RECEIVE_NEW_MSG, "server " + formatDateTime(System.currentTimeMillis
-                            ()) + ": " + msg + "\n");
+                if (!TextUtils.isEmpty(msg)) {
+
+                    Message obj = new Message();
+                    obj.what = MESSAGE_RECEIVE_NEW_MSG;
+                    obj.obj = "receive from server :" + msg + "\n";
+
+                    mHandler.sendMessage(obj);
                 }
+
             }
 
-            Log.i(TAG, "quit...");
+            Log.i(TAG, "disconnect server");
             mPrintWrite.close();
             br.close();
-            socket.close();
+            mClientSocket.close();
         } catch (IOException e) {
             Log.e(TAG, e.getMessage());
         }
@@ -139,12 +122,19 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.mtc_book_client_bind_service_btn:
-                final String msg = mMessageET.getText().toString();
+            case R.id.mtc_tcp_client_send_btn:
+                final String msg = sMessageET.getText().toString();
                 if (!TextUtils.isEmpty(msg) && mPrintWrite != null) {
-                    mPrintWrite.println(msg);
-                    mMessageET.setText("");
-                    mMessageTV.append("self " + formatDateTime(System.currentTimeMillis()) + ":" + msg + "\n");
+                    sMessageET.setText("");
+                    sMessageTV.append("self " + formatDateTime(System.currentTimeMillis()) + ":" + msg + "\n");
+
+                    LaunchTaskPool.postImmediately(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPrintWrite.println(msg);
+
+                        }
+                    });
                 }
                 break;
             default:
@@ -155,7 +145,7 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
 
 
     @Override
-    protected void onPause() {
+    protected void onDestroy() {
         if (mClientSocket != null) {
             try {
                 mClientSocket.shutdownInput();
@@ -164,11 +154,6 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
                 e.printStackTrace();
             }
         }
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
         super.onDestroy();
     }
 
@@ -176,4 +161,24 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
     private String formatDateTime(long time) {
         return new SimpleDateFormat("HH:mm:ss").format(new Date(time));
     }
+
+
+    private static class MyHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_RECEIVE_NEW_MSG:
+                    sMessageTV.append(msg.obj.toString());
+                    break;
+                case MESSAGE_SOCKET_CONNECTED:
+                    sSendBtn.setEnabled(true);
+                    break;
+                default:
+                    super.handleMessage(msg);
+                    break;
+            }
+        }
+    }
+
+
 }
