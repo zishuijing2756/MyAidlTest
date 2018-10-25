@@ -30,8 +30,6 @@ public class MessengerActivity extends Activity {
     private static final int MSG_FROM_SERVER = 1;
 
 
-    private Messenger mService;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +49,7 @@ public class MessengerActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        //取消绑定
+        /*取消绑定*/
         unbindService(mConnection);
         super.onDestroy();
     }
@@ -59,7 +57,7 @@ public class MessengerActivity extends Activity {
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mService = new Messenger(service);
+            Messenger mService = new Messenger(service);
             Message msg = Message.obtain(null, MSG_FROM_CLIENT);
             Bundle data = new Bundle();
             data.putString("msg", "hello ,this is client");
@@ -99,7 +97,9 @@ public class MessengerActivity extends Activity {
     }
 
 
-    //客户端用户接收服务端消息的Messenger
+    /**
+     * 客户端用户接收服务端消息的Messenger
+     */
     private Messenger mGetReplyMessenger = new Messenger(new MessengerHandler());
 
 

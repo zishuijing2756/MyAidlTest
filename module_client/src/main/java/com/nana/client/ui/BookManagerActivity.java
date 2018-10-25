@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.nana.client.R;
+import com.nana.devkit.optimize.TaskPool;
 import com.nana.server.aidl.Book;
 import com.nana.server.aidl.BookManagerService;
 import com.nana.server.aidl.IBookManager;
@@ -49,7 +50,8 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
     };
 
     /**
-     * 注：onServiceConnected和onServiceDisconnected方法运行在UI线程中，不可以在这两个方法中执行耗时操作；
+     * 注：onServiceConnected和onServiceDisconnected方法运行在UI线程中，
+     * 不可以在这两个方法中执行耗*时操作；
      */
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
@@ -59,34 +61,34 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
                 mRemoteBookManager = bookManager;
 
-                new Thread() {
+                TaskPool.runTask(new Runnable() {
                     @Override
                     public void run() {
+
                         try {
                             List<Book> list = mRemoteBookManager.getBookList();
 
-                            Log.i(TAG, "*******query book list:" + list.toString());
-                            Log.i(TAG, "*******query book list:" + list.toString());
+                            Log.i(TAG, "query book list:" + list.toString());
 
                             Book newBook = new Book(3, "Android 开发艺术探索");
 
                             mRemoteBookManager.addBook(newBook);
 
-                            Log.i(TAG, "*******add Book:" + newBook.toString());
+                            Log.i(TAG, "add Book:" + newBook.toString());
 
                             List<Book> newList = mRemoteBookManager.getBookList();
-                            Log.i(TAG, "*******query book newList:" + newList.toString());
+                            Log.i(TAG, "query book newList:" + newList.toString());
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
 
-                    }
-                }.start();
 
+                    }
+                });
                 bookManager.registerListener(mOnNewBookArrivedListener);
 
             } catch (RemoteException e) {
-                Log.e(TAG, "*******after connected service--->" + e.getMessage());
+                Log.e(TAG, "after connected service--->" + e.getMessage());
             }
         }
 
@@ -102,8 +104,8 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
     private IOnNewBookArrivedListener mOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
         /**
          * 运行在客户端的Binder的线程池中，故不能在里面执行UI操作，需要借助Handler切换到UI线程；
-         * @param newBook
-         * @throws RemoteException
+         * @param newBook book
+         * @throws RemoteException  异常
          */
         @Override
         public void onNewBookArrived(Book newBook) throws RemoteException {
@@ -129,8 +131,8 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
         int id = v.getId();
         switch (id) {
             case R.id.mtc_book_client_bind_service_btn:
-                /**绑定服务*/
-                Log.i(TAG, "*******click on bind service Button");
+                /*绑定服务*/
+                Log.i(TAG, "click on bind service Button");
 
                 bindService();
                 break;
@@ -146,7 +148,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void onDestroy() {
-        /**
+        /*
          * 解除已经注册到服务端的listener
          */
         if (mRemoteBookManager != null && mRemoteBookManager.asBinder().isBinderAlive()) {
