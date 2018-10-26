@@ -16,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Description:服务端BookService
+ * Description:IPC（进程间通信）-》AIDL客户端实现
  *
  * @author yangnana
  * @version 1.3.2
