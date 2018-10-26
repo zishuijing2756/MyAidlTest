@@ -38,8 +38,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
     private static final int MESSAGE_NEW_BOOK_ARRIVED = 1;
     private IBookManager mRemoteBookManager;
 
-    private static TextView mContentTv;
-
+    private static TextView sContentTv;
 
     @Override
     protected void create(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void injectViews() {
-        mContentTv = findViewById(R.id.mtc_client_book_manager_content_tv);
+        sContentTv = findViewById(R.id.mtc_client_book_manager_content_tv);
         findViewById(R.id.mtc_client_book_manager_bind_service_btn).setOnClickListener(this);
     }
 
@@ -64,7 +63,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
         switch (id) {
             case R.id.mtc_client_book_manager_bind_service_btn:
                 Log.i(TAG, "click on bind service Button");
-                mContentTv.append("->click on bind service Button \n");
+                sContentTv.append("->click on bind service Button \n");
                 /*连接服务*/
                 connectBinderService();
                 break;
@@ -90,7 +89,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
             try {
                 mRemoteBookManager.unRegisterListener(mOnNewBookArrivedListener);
                 Log.i(TAG, "unRegister listerner:" + mOnNewBookArrivedListener);
-                mContentTv.append("->" + "unRegister listerner:" + mOnNewBookArrivedListener + "\n");
+                sContentTv.append("->" + "unRegister listerner:" + mOnNewBookArrivedListener + "\n");
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -108,10 +107,10 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
             switch (msg.what) {
                 case MESSAGE_NEW_BOOK_ARRIVED:
                     Log.i(TAG, "receive new book:" + msg.obj);
-                    mContentTv.append("receive new book->" + msg.obj + "\n");
+                    sContentTv.append("receive new book->" + msg.obj + "\n");
                     break;
                 case LOG_INFO:
-                    mContentTv.append("log info->" + msg.obj + "\n");
+                    sContentTv.append("log info->" + msg.obj + "\n");
                     break;
                 default:
                     super.handleMessage(msg);
@@ -128,7 +127,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            mContentTv.append("log info-> connect service success"  + "\n");
+            sContentTv.append("log info-> connect service success"  + "\n");
 
 
             IBookManager bookManager = IBookManager.Stub.asInterface(service);
@@ -177,7 +176,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
                 bookManager.asBinder().linkToDeath(mDeathRecipient, 0);
             } catch (RemoteException e) {
                 Log.e(TAG, "log info-> exception after connected service:  " + e.getMessage());
-                mContentTv.append("log info-> exception after connected service:" + e.getMessage() + "\n");
+                sContentTv.append("log info-> exception after connected service:" + e.getMessage() + "\n");
 
             }
         }
@@ -186,7 +185,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
         public void onServiceDisconnected(ComponentName name) {
             mRemoteBookManager = null;
             Log.i(TAG, "binder disconnected");
-            mContentTv.append("log info-> binder disconnected" + "\n");
+            sContentTv.append("log info-> binder disconnected" + "\n");
         }
     };
 
