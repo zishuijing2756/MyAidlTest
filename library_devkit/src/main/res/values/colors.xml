@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="mtc_color_bebebe">#ffbebebe</color>
     <color name="mtc_color_9DA5B2">#9DA5B2</color>
     <color name="mtc_color_636372">#636372</color>
     <color name="mtc_color_f5a623">#f5a623</color>

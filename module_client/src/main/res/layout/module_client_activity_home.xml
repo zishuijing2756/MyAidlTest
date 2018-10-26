@@ -7,6 +7,14 @@
               android:orientation="vertical"
               tools:ignore="MissingPrefix">
 
+    <android.support.v7.widget.Toolbar
+
+        android:id="@+id/toobar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"/>
+
     <Button
         android:id="@+id/moudle_home_btn_aidl"
         android:layout_width="match_parent"

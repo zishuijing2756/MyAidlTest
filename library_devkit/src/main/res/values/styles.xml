@@ -9,12 +9,15 @@
     </style>
 
 
-    <style name="NormalTheme" parent="AppTheme">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <!--不显示ActionBar，Android5.0开始，ToolBar替换ActionBar-->
-        <!--<item name="windowActionBar">false</item>-->
+    <!--不显示ActionBar，Android5.0开始，ToolBar替换ActionBar-->
+    <style name="NoActionBarTheme" parent="Theme.AppCompat">
+        <!--屏蔽ActionBar，目的使用Toolbar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!--window color-->
+        <!--<item name="android:windowBackground">@color/mtc_color_F6F9FF</item>-->
+        <!-- colorPrimary 应用的主要色调，actionBar默认使用该颜色，Toolbar导航栏的底色-->
+        <item name="colorPrimary">@color/mtc_color_f5a623</item>
     </style>
 </resources>

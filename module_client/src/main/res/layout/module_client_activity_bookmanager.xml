@@ -16,17 +16,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".ui.BookManagerActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8">
+
+            <TextView
+                android:id="@+id/mtc_client_book_manager_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20sp"/>
+        </ScrollView>
+
 
         <Button
-            android:id="@+id/mtc_book_client_bind_service_btn"
-            android:layout_width="wrap_content"
+            android:id="@+id/mtc_client_book_manager_bind_service_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/mtc_base_10dp"
             android:text="@string/bind_service"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
