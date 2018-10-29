@@ -19,8 +19,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Description:IPC（进程间通信）-》AIDL客户端实现
  *
  * @author yangnana
- * @version 1.3.2
- * @since 1.3.2
+ * @version 1
+ * @since 1
  */
 public class BookManagerService extends Service {
 

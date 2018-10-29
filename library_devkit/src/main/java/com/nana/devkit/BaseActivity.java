@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import com.noober.background.BackgroundLibrary;
  */
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
+    protected Toolbar mToolbar;
 
 
     @Override
@@ -82,5 +84,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void injectViews() {
         // do nothing
     }
+
 
 }

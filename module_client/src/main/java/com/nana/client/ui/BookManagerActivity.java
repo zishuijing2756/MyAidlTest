@@ -52,10 +52,17 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void injectViews() {
+        initToolbar();
         sContentTv = findViewById(R.id.mtc_client_book_manager_content_tv);
         findViewById(R.id.mtc_client_book_manager_bind_service_btn).setOnClickListener(this);
     }
 
+    private void initToolbar() {
+        mToolbar = findViewById(R.id.toobar);
+        mToolbar.setTitle("进程间通信->AIDL");
+        mToolbar.setNavigationIcon(R.drawable.ic_search);
+        setSupportActionBar(mToolbar);
+    }
 
     @Override
     public void onClick(View v) {
@@ -127,7 +134,7 @@ public class BookManagerActivity extends BaseActivity implements View.OnClickLis
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            sContentTv.append("log info-> connect service success"  + "\n");
+            sContentTv.append("log info-> connect service success" + "\n");
 
 
             IBookManager bookManager = IBookManager.Stub.asInterface(service);

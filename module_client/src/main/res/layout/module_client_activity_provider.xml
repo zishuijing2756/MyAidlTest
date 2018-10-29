@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
               android:orientation="vertical">
 
+    <include layout="@layout/client_toobar_layout"/>
+
     <TextView
+        android:id="@+id/mtc_client_provider_content_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="进程间通信：ContentProvider"/>
+        android:layout_marginTop="@dimen/mtc_base_20dp"/>
 </LinearLayout>

@@ -42,14 +42,13 @@ public class MessengerService extends Service {
                 case MSG_FROM_CLIENT:
 
                     /**输出客户端发送来的消息*/
-                    Log.i(TAG,"******receive message from client:"+msg.getData().getString("msg"));
-
+                    Log.i(TAG, "******receive message from client:" + msg.getData().getString("msg"));
 
                     /**服务端收到客户端消息之后，回复客户端*/
-                    Messenger client=msg.replyTo;
-                    Message replyMessage=Message.obtain(null,MSG_FROM_SERVER);
-                    Bundle bundle=new Bundle();
-                    bundle.putString("reply","ok ,我已经收到你的消息了，稍后会回复你");
+                    Messenger client = msg.replyTo;
+                    Message replyMessage = Message.obtain(null, MSG_FROM_SERVER);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("reply", "ok ,我已经收到你的消息了，稍后会回复你");
                     replyMessage.setData(bundle);
                     try {
                         client.send(replyMessage);

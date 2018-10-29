@@ -53,12 +53,12 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void create(Bundle savedInstanceState) {
-        setContentView(R.layout.module_client_activity_tcp_client);
-        initView();
+        connectService();
+    }
+
+    private void connectService() {
         Intent intent = new Intent(this, TCPServerService.class);
         startService(intent);
-
-
         TaskPool.runTask(new Runnable() {
             @Override
             public void run() {
@@ -67,14 +67,27 @@ public class TcpClientActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
+    @Override
+    protected void injectContentView() {
+        setContentView(R.layout.module_client_activity_tcp_client);
+    }
 
-    private void initView() {
+    @Override
+    protected void injectViews() {
+        initToolbar();
         sMessageTV = findViewById(R.id.mtc_tcp_client_msg_tv);
         sMessageET = findViewById(R.id.mtc_tcp_client_send_msg_et);
         sSendBtn = findViewById(R.id.mtc_tcp_client_send_btn);
         sSendBtn.setOnClickListener(this);
     }
 
+
+    private void initToolbar() {
+        mToolbar = findViewById(R.id.toobar);
+        mToolbar.setTitle("进程间通信->AIDL");
+        mToolbar.setNavigationIcon(R.drawable.ic_search);
+        setSupportActionBar(mToolbar);
+    }
 
     private void connectTCPServer() {
 
